@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111114">
+    <meta name="description" content="Explore Mars, collect research samples, and find your way to the beacon.">
+    <title>MARS — with Hamza Elsaadni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="desktop">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="MARS home">
+          <span class="brand-mark">M<span>·</span></span>
+          <span class="brand-copy">MARS <span>EXPLORATION DIVISION</span></span>
+        </a>
+        <div class="topbar-center"><span class="live-dot"></span> LIVE MISSION <span class="topbar-divider">/</span> SOL 047</div>
+        <div class="topbar-actions">
+          <span class="clock" id="mission-clock">00:00</span>
+          <button class="theme-button" id="theme-toggle" type="button" aria-label="Switch to light theme"><span id="theme-icon">☼</span><span class="theme-label">LIGHT MODE</span></button>
+        </div>
+      </header>
+
+      <section class="mission-heading" aria-label="Mission title">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> THE RED PLANET, YOURS TO EXPLORE</div>
+          <h1>MARS <span>WITH</span> HAMZA ELSAADNI</h1>
+          <p>One astronaut. One uncharted landscape. A whole planet waiting.</p>
+        </div>
+        <div class="mission-stamp"><span>MISSION</span><strong>HX—047</strong><span>EST. 2047</span></div>
+      </section>
+
+      <section class="workspace" aria-label="Mission control workspace">
+        <div class="game-window window" id="game-window">
+          <div class="window-bar">
+            <div class="window-title"><span class="window-icon">◈</span> SURFACE EXPLORATION <span class="window-tag">LIVE FEED</span></div>
+            <div class="window-controls"><button class="window-control minimize" type="button" aria-label="Minimize surface exploration window">−</button><span class="window-control-dot"></span><span class="window-control-dot"></span></div>
+          </div>
+          <div class="game-screen">
+            <canvas id="mars-canvas" aria-label="Mars exploration game. Use arrow keys or WASD to move, collect five samples, then reach the beacon."></canvas>
+            <div class="screen-coordinates"><span>⊕ <span id="coordinates">18.7° N&nbsp; 42.3° E</span></span><span>CAM 01 <i></i></span></div>
+            <div class="start-overlay" id="start-overlay">
+              <div class="overlay-orbit">✳</div>
+              <div class="overlay-kicker">A NEW WORLD AWAITS</div>
+              <h2>Make your mark<br>on <span>Mars.</span></h2>
+              <p>Collect <strong>5 research samples</strong>, then make your way to the beacon.</p>
+              <button class="launch-button" id="launch-button" type="button"><span>▶</span> BEGIN EXPLORATION <span class="button-arrow">↗</span></button>
+              <div class="overlay-controls">MOVE <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>OR</span> <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div>
+            </div>
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          </div>
+          <div class="game-footer">
+            <span><span class="status-pulse"></span> SIGNAL STRONG</span>
+            <span class="footer-divider"></span>
+            <span>WIND <strong>12 KM/H</strong></span>
+            <span class="footer-divider"></span>
+            <span>TEMP <strong>−63°C</strong></span>
+            <span class="game-footer-right">SECTOR <strong>OLYMPUS PLANITIA</strong></span>
+          </div>
+        </div>
+
+        <aside class="side-windows" aria-label="Mission data windows">
+          <section class="window info-window" id="mission-window">
+            <div class="window-bar drag-handle">
+              <div class="window-title"><span class="window-icon">◎</span> MISSION BRIEF</div>
+              <div class="window-controls"><button class="window-control minimize" type="button" aria-label="Minimize mission brief window">−</button><span class="window-control-dot"></span><span class="window-control-dot"></span></div>
+            </div>
+            <div class="window-body mission-body">
+              <div class="mission-label">PRIMARY OBJECTIVE <span>01 / 01</span></div>
+              <p class="objective-title">Find what’s<br>out there.</p>
+              <p class="objective-copy">Survey the landing zone, collect mineral samples, and reach the extraction beacon.</p>
+              <div class="progress-label"><span>FIELD SAMPLES</span><strong id="sample-count">00 <span>/ 05</span></strong></div>
+              <div class="progress-track"><div class="progress-fill" id="sample-progress"></div></div>
+              <div class="mission-checklist"><span class="check-item" id="sample-check"><span class="check-box"></span> Collect 5 samples</span><span class="check-item" id="beacon-check"><span class="check-box"></span> Reach the beacon</span></div>
+            </div>
+          </section>
+
+          <section class="window info-window" id="crew-window">
+            <div class="window-bar drag-handle">
+              <div class="window-title"><span class="window-icon">◉</span> CREW STATUS</div>
+              <div class="window-controls"><button class="window-control minimize" type="button" aria-label="Minimize crew status window">−</button><span class="window-control-dot"></span><span class="window-control-dot"></span></div>
+            </div>
+            <div class="window-body crew-body">
+              <div class="crew-avatar">H<span>✳</span></div>
+              <div class="crew-info"><strong>HAMZA ELSAADNI</strong><span>FIELD ASTRONAUT <i>● ACTIVE</i></span></div>
+              <div class="crew-divider"></div>
+              <div class="vital"><span>SUIT O₂</span><strong>98%</strong><div class="vital-track"><i style="width: 98%"></i></div></div>
+              <div class="vital"><span>ENERGY</span><strong>100%</strong><div class="vital-track energy-track"><i style="width: 100%"></i></div></div>
+            </div>
+          </section>
+
+          <section class="window info-window map-window" id="map-window">
+            <div class="window-bar drag-handle">
+              <div class="window-title"><span class="window-icon">⌖</span> LOCAL MAP</div>
+              <div class="window-controls"><button class="window-control minimize" type="button" aria-label="Minimize local map window">−</button><span class="window-control-dot"></span><span class="window-control-dot"></span></div>
+            </div>
+            <div class="window-body map-body"><div class="mini-map" id="mini-map"><span class="map-route"></span><span class="map-beacon">✳</span><span class="map-player" id="map-player"></span><span class="map-label map-label-a">LANDER 01</span><span class="map-label map-label-b">SECTOR 7G</span></div><div class="map-legend"><span><i class="legend-player"></i> YOU</span><span><i class="legend-beacon"></i> BEACON</span></div></div>
+          </section>
+        </aside>
+      </section>
+
+      <footer class="page-footer"><span>BUILT FOR THE CURIOUS <span class="footer-star">✳</span></span><span>NO SIGNAL. NO LIMITS.</span><span>© 2047 MARS EXPLORATION DIVISION</span></footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
